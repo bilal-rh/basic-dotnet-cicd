@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       #todo: - pass project/ns and app name as argumement
-        - image: image-registry.openshift-image-registry.svc:5000/mashraf-dev/mydotnet
+        - image: image-registry.openshift-image-registry.svc:5000/mashraf-dev/app-dotnet:latest
           imagePullPolicy: Always
           name: app-dotnet
           ports:
