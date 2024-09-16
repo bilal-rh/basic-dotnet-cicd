@@ -29,7 +29,7 @@ spec:
     - default: 'image-registry.openshift-image-registry.svc:5000/mashraf-dev/app-dotnet'
       name: IMAGE_NAME
       type: string
-    - default: ''
+    - default: 'app-dotnet'
       name: PATH_CONTEXT
       type: string
     - default: 8.0-ubi8
@@ -46,7 +46,7 @@ spec:
         - name: revision
           value: $(params.GIT_REVISION)
         - name: subdirectory
-          value: "app-dotnet"
+          value: ''
         - name: deleteExisting
           value: "true"
       workspaces:
