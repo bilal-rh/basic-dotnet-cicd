@@ -37,6 +37,9 @@ spec:
     - default: 8.0-ubi8
       name: VERSION
       type: string
+    - name: APP_IMAGE_TAG
+      type: string
+      description: The application image tag to build
   tasks:
     - name: fetch-repository
       taskRef:
@@ -73,7 +76,24 @@ spec:
       workspaces:
         - name: source
           workspace: workspace
-    
+    - name: tag-image
+      taskRef:
+        name: openshift-client
+        kind: ClusterTask
+      runAfter:
+        - build
+      params:
+
+        - name: SCRIPT
+          value: |
+            #!/usr/bin/bash
+            set +x
+            set +v
+            IMGT=$(params.APP_IMAGE_TAG)
+            IMGTAG=${IMGT:0:7}
+            echo "Tag image from latest to git commit hash ('$(params.APP_IMAGE_TAG)') "
+            oc tag $(params.IMAGE_NAME):latest $(params.IMAGE_NAME):$IMGTAG
+
     - name: fetch-deploy-repository
       taskRef:
         name: git-clone
