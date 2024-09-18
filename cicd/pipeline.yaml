@@ -70,17 +70,35 @@ spec:
       workspaces:
         - name: source
           workspace: workspace
-    - name: deploy
+    
+    - name: fetch-deploy-repository
+      taskRef:
+        name: git-clone
+        kind: ClusterTask
       params:
-        - name: SCRIPT
-          value: oc apply -f ../cicd/deploy
+        - name: url
+          value: $(params.GIT_REPO)
+        - name: revision
+          value: $(params.GIT_REVISION)
+        - name: subdirectory
+          value: '/cicd/deploy'
+        - name: deleteExisting
+          value: "true"
       runAfter:
         - build
+      workspaces:
+        - name: output
+          workspace: workspace
+
+
+    - name: apply-manifests
       taskRef:
-        kind: ClusterTask
-        name: openshift-client
-  workspaces:
-    - name: workspace
+        name: apply-manifests
+      workspaces:
+      - name: source
+        workspace: workspace
+      runAfter:
+      - fetch-deploy-repository
 
 # ---
 # apiVersion: tekton.dev/v1beta1
