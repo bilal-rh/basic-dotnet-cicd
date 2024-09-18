@@ -9,7 +9,7 @@ spec:
     - name: manifest_dir
       description: The directory in source that contains yaml manifests
       type: string
-      default: "deploy"
+      default: "/cicd/deploy"
   steps:
     - name: apply
       image: image-registry.openshift-image-registry.svc:5000/openshift/cli:latest
