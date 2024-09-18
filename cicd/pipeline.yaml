@@ -124,6 +124,17 @@ spec:
       runAfter:
         - fetch-deploy-repository
 
+
+    - name: update-deployment
+      taskRef:
+        name: update-deployment
+      params:
+      - name: deployment
+        value: $(params.deployment-name)
+      - name: IMAGE
+        value: $(params.IMAGE)
+      runAfter:
+      - apply-manifests
 # ---
 # apiVersion: tekton.dev/v1beta1
 # kind: Task
