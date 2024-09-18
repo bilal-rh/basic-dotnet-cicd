@@ -12,7 +12,7 @@ public class HomeController : Controller
     {
         _logger = logger;
     }
-// no cache    
+// no cache 
 [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Index()
     {
