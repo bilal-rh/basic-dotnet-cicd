@@ -20,12 +20,24 @@ APP_NAME="s2i-dotnet"
 CICD_PROJECT="mashraf-dev"
 
 
-# apply cluster level configs such as cluster menu links etc
+# create task to deploy using oc client 
 echo -e "${green} \n\napply manifest task..."
 oc apply -f apply-manifest-task.yaml
+
+
 
 # apply cluster level configs such as cluster menu links etc
 echo -e "${green} \n\nCreating basic dotnet pipeline..."
 oc apply -f pipeline.yaml
+
+
+# create trigger, bindings and evnt listener
+echo -e "${green} \n\napply manifest task..."
+oc apply -f trigger-binding-listner.yaml
+oc expose svc el-app-eventlistener
+
+echo -e "${green} \n\n Use below url to configure event listerner in git repo settings..."
+echo "URL: $(oc get route el-app-eventlistener --template='http://{{.spec.host}}')"
+# configure webhook 
 
 
