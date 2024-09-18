@@ -16,6 +16,8 @@ metadata:
   namespace: mashraf-dev
 
 spec:
+  workspaces:
+  - name: workspace  
   params:
     - default: app-dotnet
       name: APP_NAME
@@ -52,6 +54,7 @@ spec:
       workspaces:
         - name: output
           workspace: workspace
+    
     - name: build
       params:
         - name: IMAGE
@@ -95,10 +98,11 @@ spec:
       taskRef:
         name: apply-manifests
       workspaces:
-      - name: source
-        workspace: workspace
+        - name: source
+          workspace: workspace
       runAfter:
-      - fetch-deploy-repository
+        - fetch-deploy-repository
+
 
 # ---
 # apiVersion: tekton.dev/v1beta1
