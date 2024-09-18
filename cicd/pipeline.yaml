@@ -91,7 +91,7 @@ spec:
             set +v
             IMGT=$(params.APP_IMAGE_TAG)
             IMGTAG=${IMGT:0:10}
-            echo "Tag image from latest to git commit hash ('$(params.APP_IMAGE_TAG)') "
+            echo "Tag image from latest to git commit hash taking forst 10 digits of the hash ('$(params.APP_IMAGE_TAG)') "
             oc tag --alias=true $(params.APP_NAME):latest $(params.APP_NAME):$IMGTAG
 
     - name: fetch-deploy-repository
