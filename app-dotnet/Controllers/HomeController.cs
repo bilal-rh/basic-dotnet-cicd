@@ -8,6 +8,7 @@ public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
 
+[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public HomeController(ILogger<HomeController> logger)
     {
         _logger = logger;
