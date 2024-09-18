@@ -21,8 +21,10 @@ CICD_PROJECT="mashraf-dev"
 
 
 # create task to deploy using oc client 
-echo -e "${green} \n\napply manifest task..."
+echo -e "${green} \n\napply manifest & update deploy task..."
 oc apply -f apply-manifest-task.yaml
+oc apply -f update-deployment-task.yaml
+
 
 
 
