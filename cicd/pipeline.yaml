@@ -123,7 +123,6 @@ spec:
       runAfter:
         - fetch-deploy-repository
 
-
 # ---
 # apiVersion: tekton.dev/v1beta1
 # kind: Task
