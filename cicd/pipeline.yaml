@@ -93,6 +93,7 @@ spec:
             IMGTAG=${IMGT:0:10}
             echo "Tag image from latest to git commit hash taking forst 10 digits of the hash ('$(params.APP_IMAGE_TAG)') "
             oc tag --alias=true $(params.APP_NAME):latest $(params.APP_NAME):$IMGTAG
+            oc tag --alias=true $(params.APP_NAME):latest $(params.APP_NAME):latest1
 
     - name: fetch-deploy-repository
       taskRef:
